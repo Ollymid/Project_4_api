@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :first_name, :last_name, :full_name, :email, :facebook_id, :password_digest, :diving_level
+  attributes :id, :username, :first_name, :last_name, :full_name, :email, :facebook_id, :password_digest, :diving_level, :total_dive_time, :number_of_dives
   has_many :logs
 
 
