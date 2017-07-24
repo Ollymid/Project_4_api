@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2017-07-24
+  user: one
+  dive_site: one
+  country: MyString
+  dive_time: 1
+  gear: MyString
+  comments: MyText
+  visibility: MyString
+  temperature: 1.5
+  water_type: MyString
+  dive_type: MyString
+  image: MyString
+
+two:
+  date: 2017-07-24
+  user: two
+  dive_site: two
+  country: MyString
+  dive_time: 1
+  gear: MyString
+  comments: MyText
+  visibility: MyString
+  temperature: 1.5
+  water_type: MyString
+  dive_type: MyString
+  image: MyString

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  image: MyString
+  water_type: MyString
+  dive_type: MyString
+  lat: 1.5
+  lng: 1.5
+  max_depth: 1
+
+two:
+  name: MyString
+  image: MyString
+  water_type: MyString
+  dive_type: MyString
+  lat: 1.5
+  lng: 1.5
+  max_depth: 1

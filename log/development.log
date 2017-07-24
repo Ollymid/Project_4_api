@@ -1,0 +1,356 @@
+  [1m[35m (35.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (22.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1347200930821886805);[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20170723212512)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (23.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "first_name" character varying, "last_name" character varying, "email" character varying, "facebook_id" bigint, "password_digest" character varying, "diving_level" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170723212512"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateDiveSites (20170723223214)
+  [1m[35m (6.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (16.9ms)[0m  [1m[35mCREATE TABLE "dive_sites" ("id" bigserial primary key, "name" character varying, "image" character varying, "water_type" character varying, "dive_type" character varying, "lat" float, "lng" float, "max_depth" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170723223214"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLogs (20170723231045)
+  [1m[35m (6.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (27.3ms)[0m  [1m[35mCREATE TABLE "logs" ("id" bigserial primary key, "date" date, "user_id" bigint, "dive_site_id" bigint, "country" character varying, "dive_time" integer, "gear" character varying, "comments" text, "visibility" character varying, "temperature" float, "water_type" character varying, "dive_type" character varying, "image" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_8fc980bf44"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_39072cde3c"
+FOREIGN KEY ("dive_site_id")
+  REFERENCES "dive_sites" ("id")
+)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX  "index_logs_on_user_id" ON "logs"  ("user_id")[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX  "index_logs_on_dive_site_id" ON "logs"  ("dive_site_id")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170723231045"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-07-24 09:00:43.242254"], ["updated_at", "2017-07-24 09:00:43.242254"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(1347200930821886805)[0m
+  [1m[35m (6.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/api/register" for 127.0.0.1 at 2017-07-24 10:59:25 +0100
+  [1m[35m (8.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ArgumentError (Before process_action callback :authenticate_user! has not been defined):
+  
+app/controllers/authentications_controller.rb:2:in `<class:AuthenticationsController>'
+app/controllers/authentications_controller.rb:1:in `<top (required)>'
+Started POST "/api/register" for 127.0.0.1 at 2017-07-24 10:59:38 +0100
+  
+ArgumentError (Before process_action callback :authenticate_user! has not been defined):
+  
+app/controllers/authentications_controller.rb:2:in `<class:AuthenticationsController>'
+app/controllers/authentications_controller.rb:1:in `<top (required)>'
+Started POST "/api/register" for 127.0.0.1 at 2017-07-24 11:04:06 +0100
+  
+ArgumentError (Before process_action callback :authenticate_user! has not been defined):
+  
+app/controllers/authentications_controller.rb:2:in `<class:AuthenticationsController>'
+app/controllers/authentications_controller.rb:1:in `<top (required)>'
+Started POST "/api/register" for 127.0.0.1 at 2017-07-24 11:06:52 +0100
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"olly@olly.com", "username"=>"ollymid", "first_name"=>"Olly", "last_name"=>"Midd", "diving_level"=>"divemaster", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"olly@olly.com", "username"=>"ollymid", "first_name"=>"Olly", "last_name"=>"Midd", "diving_level"=>"divemaster", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Unpermitted parameters: :diving_level, :authentication
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (12.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "olly@olly.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "users" ("username", "first_name", "last_name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "ollymid"], ["first_name", "Olly"], ["last_name", "Midd"], ["email", "olly@olly.com"], ["password_digest", "$2a$10$bpndIwYSOg0uMhrCSoWenuIexLM0LISyVS604GEbCuLC.yORFmkUO"], ["created_at", "2017-07-24 10:07:02.625081"], ["updated_at", "2017-07-24 10:07:02.625081"]]
+  [1m[35m (6.3ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mLog Load (18.8ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (52.58ms)
+Completed 500 Internal Server Error in 196ms (ActiveRecord: 46.9ms)
+
+
+  
+ArgumentError (Unknown key: :through. Valid keys are: :class_name, :anonymous_class, :foreign_key, :validate, :autosave, :foreign_type, :dependent, :primary_key, :inverse_of, :required, :polymorphic, :touch, :counter_cache, :optional, :default):
+  
+app/models/dive_site.rb:2:in `<class:DiveSite>'
+app/models/dive_site.rb:1:in `<top (required)>'
+app/controllers/authentications_controller.rb:7:in `register'
+Started POST "/api/register" for 127.0.0.1 at 2017-07-24 11:09:03 +0100
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"olly@olly.com", "username"=>"ollymid", "first_name"=>"Olly", "last_name"=>"Midd", "diving_level"=>"divemaster", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"olly@olly.com", "username"=>"ollymid", "first_name"=>"Olly", "last_name"=>"Midd", "diving_level"=>"divemaster", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Unpermitted parameter: :authentication
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "olly@olly.com"], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[31mROLLBACK[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.16ms)
+Completed 422 Unprocessable Entity in 108ms (Views: 3.8ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/api/register" for 127.0.0.1 at 2017-07-24 11:09:13 +0100
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"olly@dave.com", "username"=>"ollymid", "first_name"=>"Olly", "last_name"=>"Midd", "diving_level"=>"divemaster", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"olly@dave.com", "username"=>"ollymid", "first_name"=>"Olly", "last_name"=>"Midd", "diving_level"=>"divemaster", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Unpermitted parameter: :authentication
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (1.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "olly@dave.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "users" ("username", "first_name", "last_name", "email", "password_digest", "diving_level", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "ollymid"], ["first_name", "Olly"], ["last_name", "Midd"], ["email", "olly@dave.com"], ["password_digest", "$2a$10$FfrF12QfY6q5HemgHH7FOuaD5zv6vVb3fVXxRcEkURScP9oivL1j."], ["diving_level", "divemaster"], ["created_at", "2017-07-24 10:09:13.944105"], ["updated_at", "2017-07-24 10:09:13.944105"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mLog Load (0.5ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."user_id" = $1[0m  [["user_id", 2]]
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (12.19ms)
+Completed 500 Internal Server Error in 88ms (ActiveRecord: 7.9ms)
+
+
+  
+ArgumentError (Unknown key: :through. Valid keys are: :class_name, :anonymous_class, :foreign_key, :validate, :autosave, :foreign_type, :dependent, :primary_key, :inverse_of, :required, :polymorphic, :touch, :counter_cache, :optional, :default):
+  
+app/models/dive_site.rb:2:in `<class:DiveSite>'
+app/models/dive_site.rb:1:in `<top (required)>'
+app/controllers/authentications_controller.rb:7:in `register'
+Started POST "/api/register" for 127.0.0.1 at 2017-07-24 11:18:28 +0100
+Processing by AuthenticationsController#register as */*
+  Parameters: {"email"=>"olly@hotmail.com", "username"=>"ollymid", "first_name"=>"Olly", "last_name"=>"Midd", "diving_level"=>"divemaster", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "authentication"=>{"email"=>"olly@hotmail.com", "username"=>"ollymid", "first_name"=>"Olly", "last_name"=>"Midd", "diving_level"=>"divemaster", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Unpermitted parameter: :authentication
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "olly@hotmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "first_name", "last_name", "email", "password_digest", "diving_level", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "ollymid"], ["first_name", "Olly"], ["last_name", "Midd"], ["email", "olly@hotmail.com"], ["password_digest", "$2a$10$n8zkQCle0yBco3xjq/3g9uNo4jucpbbLSlp0m6VjQC9qmsiy8e8lm"], ["diving_level", "divemaster"], ["created_at", "2017-07-24 10:18:28.946513"], ["updated_at", "2017-07-24 10:18:28.946513"]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mLog Load (0.8ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."user_id" = $1[0m  [["user_id", 3]]
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (18.95ms)
+Completed 200 OK in 117ms (Views: 19.9ms | ActiveRecord: 12.6ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 11:19:11 +0100
+Processing by UsersController#index as */*
+  Parameters: {"email"=>"olly@hotmail.com", "username"=>"ollymid", "first_name"=>"Olly", "last_name"=>"Midd", "diving_level"=>"divemaster", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"username"=>"ollymid", "first_name"=>"Olly", "last_name"=>"Midd", "email"=>"olly@hotmail.com", "diving_level"=>"divemaster"}}
+  [1m[36mUser Load (12.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers]   [1m[36mLog Load (1.2ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   [1m[36mLog Load (0.8ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."user_id" = $1[0m  [["user_id", 2]]
+[active_model_serializers]   [1m[36mLog Load (2.4ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."user_id" = $1[0m  [["user_id", 3]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (24.37ms)
+Completed 200 OK in 43ms (Views: 25.1ms | ActiveRecord: 17.1ms)
+
+
+Started POST "/api/login" for 127.0.0.1 at 2017-07-24 11:27:52 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"olly@hotmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"olly@hotmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "olly@hotmail.com"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 69ms (ActiveRecord: 0.3ms)
+
+
+  
+NameError (uninitialized constant AuthenticationsController::Auth):
+  
+app/controllers/authentications_controller.rb:16:in `login'
+Started POST "/api/login" for 127.0.0.1 at 2017-07-24 11:28:28 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"olly@hotmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"olly@hotmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "olly@hotmail.com"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 73ms (ActiveRecord: 0.3ms)
+
+
+  
+NameError (uninitialized constant AuthenticationsController::Auth):
+  
+app/controllers/authentications_controller.rb:16:in `login'
+Started POST "/api/login" for 127.0.0.1 at 2017-07-24 11:30:02 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"olly@hotmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"olly@hotmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "olly@hotmail.com"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 87ms (ActiveRecord: 5.2ms)
+
+
+  
+NameError (uninitialized constant AuthenticationsController::Auth):
+  
+app/controllers/authentications_controller.rb:16:in `login'
+Started POST "/api/login" for 127.0.0.1 at 2017-07-24 11:32:02 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"olly@hotmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"olly@hotmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "olly@hotmail.com"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 80ms (ActiveRecord: 0.3ms)
+
+
+  
+NameError (uninitialized constant AuthenticationsController::Auth):
+  
+app/controllers/authentications_controller.rb:16:in `login'
+Started POST "/api/login" for 127.0.0.1 at 2017-07-24 11:34:59 +0100
+  
+ArgumentError (Before process_action callback :authenticate_user! has not been defined):
+  
+app/controllers/authentications_controller.rb:2:in `<class:AuthenticationsController>'
+app/controllers/authentications_controller.rb:1:in `<top (required)>'
+Started POST "/api/login" for 127.0.0.1 at 2017-07-24 11:39:28 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"olly@hotmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"olly@hotmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "olly@hotmail.com"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 98ms (ActiveRecord: 10.9ms)
+
+
+  
+NameError (uninitialized constant AuthenticationsController::Auth):
+  
+app/controllers/authentications_controller.rb:16:in `login'
+Started GET "/api/users" for 127.0.0.1 at 2017-07-24 11:40:06 +0100
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  Parameters: {"email"=>"olly@hotmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"olly@hotmail.com"}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.38ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 5ms (Views: 4.9ms | ActiveRecord: 3.1ms)
+
+
+Started POST "/api/login" for 127.0.0.1 at 2017-07-24 11:40:24 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"olly@hotmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"olly@hotmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "olly@hotmail.com"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 104ms (ActiveRecord: 13.0ms)
+
+
+  
+NameError (uninitialized constant AuthenticationsController::Auth):
+  
+app/controllers/authentications_controller.rb:16:in `login'
+Started POST "/api/login" for 127.0.0.1 at 2017-07-24 11:42:39 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"olly@hotmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"olly@hotmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "olly@hotmail.com"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 70ms (ActiveRecord: 0.5ms)
+
+
+  
+NameError (uninitialized constant AuthenticationsController::Auth):
+  
+app/controllers/authentications_controller.rb:16:in `login'
+Started POST "/api/login" for 127.0.0.1 at 2017-07-24 11:58:50 +0100
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"olly@hotmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"olly@hotmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "olly@hotmail.com"], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mLog Load (0.7ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."user_id" = $1[0m  [["user_id", 3]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (35.03ms)
+Completed 200 OK in 156ms (Views: 36.4ms | ActiveRecord: 11.4ms)
+
+
+  [1m[36mDiveSite Load (13.2ms)[0m  [1m[34mSELECT  "dive_sites".* FROM "dive_sites" ORDER BY "dive_sites"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (13.7ms)[0m  [1m[32mINSERT INTO "dive_sites" ("name", "water_type", "dive_type", "lat", "lng", "max_depth", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Coral Gardens"], ["water_type", "Salt"], ["dive_type", "Boat"], ["lat", 0.0], ["lng", 0.0], ["max_depth", 20], ["created_at", "2017-07-24 13:15:06.042085"], ["updated_at", "2017-07-24 13:15:06.042085"]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mDiveSite Load (0.5ms)[0m  [1m[34mSELECT  "dive_sites".* FROM "dive_sites" ORDER BY "dive_sites"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (28.2ms)[0m  [1m[32mINSERT INTO "logs" ("date", "user_id", "dive_site_id", "dive_time", "gear", "comments", "visibility", "temperature", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["date", "2017-07-24"], ["user_id", 1], ["dive_site_id", 1], ["dive_time", 45], ["gear", "Wetsuit, Fins, Mask, Snorkel"], ["comments", "Saw a shark, pissed myself"], ["visibility", "Good"], ["temperature", 27.0], ["created_at", "2017-07-24 13:20:48.119662"], ["updated_at", "2017-07-24 13:20:48.119662"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLog Load (0.7ms)[0m  [1m[34mSELECT  "logs".* FROM "logs" ORDER BY "logs"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDiveSite Load (0.5ms)[0m  [1m[34mSELECT  "dive_sites".* FROM "dive_sites" WHERE "dive_sites"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDiveSite Load (8.9ms)[0m  [1m[34mSELECT  DISTINCT "dive_sites".* FROM "dive_sites" INNER JOIN "logs" ON "dive_sites"."id" = "logs"."dive_site_id" WHERE "logs"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 11]]
+  [1m[36mLog Load (0.4ms)[0m  [1m[34mSELECT  "logs".* FROM "logs" WHERE "logs"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 11]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" INNER JOIN "logs" ON "users"."id" = "logs"."user_id" WHERE "logs"."dive_site_id" = $1 LIMIT $2[0m  [["dive_site_id", 1], ["LIMIT", 11]]
+  [1m[36mLog Load (0.4ms)[0m  [1m[34mSELECT  "logs".* FROM "logs" WHERE "logs"."dive_site_id" = $1 LIMIT $2[0m  [["dive_site_id", 1], ["LIMIT", 11]]
+  [1m[35m (5.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1347200930821886805);[0m
+  [1m[35m (7.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RemoveCountryFromLogs (20170724134215)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (30.9ms)[0m  [1m[35mALTER TABLE "logs" DROP "country"[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170724134215"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(1347200930821886805)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1347200930821886805);[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RemoveDiveTypeAndWaterTypeFromLogs (20170724134454)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (14.3ms)[0m  [1m[35mALTER TABLE "logs" DROP "dive_type"[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "logs" DROP "water_type"[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170724134454"]]
+  [1m[35m (5.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(1347200930821886805)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1347200930821886805);[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddCountryToDiveSites (20170724135601)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (18.1ms)[0m  [1m[35mALTER TABLE "dive_sites" ADD "country" character varying[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170724135601"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(1347200930821886805)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/api/logs" for 127.0.0.1 at 2017-07-24 15:30:33 +0100
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LogsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.15ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 7ms (Views: 6.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/login" for 127.0.0.1 at 2017-07-24 15:30:38 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"olly@hotmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"olly@hotmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (6.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "olly@hotmail.com"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 160ms (ActiveRecord: 32.9ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 3, expected 1..2)):
+  
+app/serializers/user_serializer.rb:3:in `<class:UserSerializer>'
+app/serializers/user_serializer.rb:1:in `<top (required)>'
+app/controllers/authentications_controller.rb:17:in `login'
+Started POST "/api/login" for 127.0.0.1 at 2017-07-24 15:31:16 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"olly@hotmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"olly@hotmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "olly@hotmail.com"], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mLog Load (0.5ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."user_id" = $1[0m  [["user_id", 3]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (35.2ms)
+Completed 200 OK in 141ms (Views: 35.4ms | ActiveRecord: 10.1ms)
+
+
+Started GET "/api/logs" for 127.0.0.1 at 2017-07-24 15:31:46 +0100
+Processing by LogsController#index as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mLog Load (1.4ms)[0m  [1m[34mSELECT "logs".* FROM "logs"[0m
+[active_model_serializers]   [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mDiveSite Load (0.5ms)[0m  [1m[34mSELECT  "dive_sites".* FROM "dive_sites" WHERE "dive_sites"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (30.96ms)
+Completed 200 OK in 54ms (Views: 40.8ms | ActiveRecord: 9.7ms)
+
+
+Started GET "/api/logs/1" for 127.0.0.1 at 2017-07-24 15:31:53 +0100
+Processing by LogsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mLog Load (0.3ms)[0m  [1m[34mSELECT  "logs".* FROM "logs" WHERE "logs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mDiveSite Load (0.4ms)[0m  [1m[34mSELECT  "dive_sites".* FROM "dive_sites" WHERE "dive_sites"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered LogSerializer with ActiveModelSerializers::Adapter::Attributes (6.48ms)
+Completed 200 OK in 11ms (Views: 6.0ms | ActiveRecord: 1.5ms)
+
+
+Started PUT "/api/dive_sites/1" for 127.0.0.1 at 2017-07-24 15:32:37 +0100
+Processing by DiveSitesController#update as */*
+  Parameters: {"country"=>"England", "id"=>"1", "dive_site"=>{"country"=>"England"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mDiveSite Load (0.3ms)[0m  [1m[34mSELECT  "dive_sites".* FROM "dive_sites" WHERE "dive_sites"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Unpermitted parameters: :id, :dive_site
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (12.0ms)[0m  [1m[33mUPDATE "dive_sites" SET "country" = $1, "updated_at" = $2 WHERE "dive_sites"."id" = $3[0m  [["country", "England"], ["updated_at", "2017-07-24 14:32:37.317579"], ["id", 1]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mLog Load (1.0ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."dive_site_id" = $1[0m  [["dive_site_id", 1]]
+[active_model_serializers] Rendered DiveSiteSerializer with ActiveModelSerializers::Adapter::Attributes (11.41ms)
+Completed 200 OK in 37ms (Views: 11.5ms | ActiveRecord: 14.7ms)
+
+
+Started GET "/api/logs/1" for 127.0.0.1 at 2017-07-24 15:32:49 +0100
+Processing by LogsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mLog Load (0.3ms)[0m  [1m[34mSELECT  "logs".* FROM "logs" WHERE "logs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mDiveSite Load (0.4ms)[0m  [1m[34mSELECT  "dive_sites".* FROM "dive_sites" WHERE "dive_sites"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered LogSerializer with ActiveModelSerializers::Adapter::Attributes (3.96ms)
+Completed 200 OK in 7ms (Views: 3.7ms | ActiveRecord: 1.5ms)
+
+
