@@ -3,7 +3,8 @@ class User < ApplicationRecord
   has_many :logs
   has_many :dive_sites, -> { distinct }, through: :logs
 
-
+  validates :username, uniqueness: true
+  validates :diving_level, length: { in: 8..150 }
   validates :username, presence: true
   validates :email, format: { with: /.*@.*./, message: 'Invalid Email' }
   validates :email, presence: true, on: :create

@@ -1,7 +1,7 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :username, :first_name, :last_name, :full_name, :email, :facebook_id, :password_digest, :diving_level, :total_dive_time, :number_of_dives
-  has_many :logs
 
+  has_many :logs
 
   def number_of_dives
     object.logs.length
@@ -14,4 +14,5 @@ class UserSerializer < ActiveModel::Serializer
   def full_name
   "#{object.first_name} #{object.last_name}"
   end
+
 end

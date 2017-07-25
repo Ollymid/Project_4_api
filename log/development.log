@@ -354,3 +354,92 @@ Processing by LogsController#show as */*
 Completed 200 OK in 7ms (Views: 3.7ms | ActiveRecord: 1.5ms)
 
 
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (7.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (35.5ms)[0m  [1m[35mTRUNCATE users RESTART IDENTITY CASCADE[0m
+  [1m[35m (5.9ms)[0m  [1m[35mTRUNCATE logs RESTART IDENTITY CASCADE[0m
+  [1m[35m (9.8ms)[0m  [1m[35mTRUNCATE dive_sites RESTART IDENTITY CASCADE[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "olly@olly.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "first_name", "last_name", "email", "password_digest", "diving_level", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "ollymid"], ["first_name", "olly"], ["last_name", "middleton"], ["email", "olly@olly.com"], ["password_digest", "$2a$10$EBqkporrwY5N/04EkQYSOOLQezaA7V2IgYzVAM.V3LqrsxJAy2fZu"], ["diving_level", "PADI OW Instructor"], ["created_at", "2017-07-24 16:22:19.922683"], ["updated_at", "2017-07-24 16:22:19.922683"]]
+  [1m[35m (6.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (27.6ms)[0m  [1m[35mTRUNCATE users RESTART IDENTITY CASCADE[0m
+  [1m[35m (6.2ms)[0m  [1m[35mTRUNCATE logs RESTART IDENTITY CASCADE[0m
+  [1m[35m (9.3ms)[0m  [1m[35mTRUNCATE dive_sites RESTART IDENTITY CASCADE[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "olly@olly.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "first_name", "last_name", "email", "password_digest", "diving_level", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "ollymid"], ["first_name", "olly"], ["last_name", "middleton"], ["email", "olly@olly.com"], ["password_digest", "$2a$10$xE/8pFlkzomCXPK2CKDYAehNMayW.9Z7./S3kmfgoR2Tan9lmZtQ6"], ["diving_level", "PADI OW Instructor"], ["created_at", "2017-07-24 16:23:05.097767"], ["updated_at", "2017-07-24 16:23:05.097767"]]
+  [1m[35m (6.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "lucy@lucy.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "first_name", "last_name", "email", "password_digest", "diving_level", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "lucymid"], ["first_name", "lucy"], ["last_name", "middleton"], ["email", "lucy@lucy.com"], ["password_digest", "$2a$10$FwG74jXmbXXRiqKT2FKiiuesAsARJxONfmJ6lH2jx9iXluuX6ETfC"], ["diving_level", "PADI Open Water Diver"], ["created_at", "2017-07-24 16:23:05.176198"], ["updated_at", "2017-07-24 16:23:05.176198"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "dive_sites" ("name", "water_type", "dive_type", "lat", "lng", "max_depth", "created_at", "updated_at", "country") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Coral Gardens"], ["water_type", "salt"], ["dive_type", "boat, night dive"], ["lat", -16.725453], ["lng", 146.276663], ["max_depth", 20], ["created_at", "2017-07-24 16:23:05.191409"], ["updated_at", "2017-07-24 16:23:05.191409"], ["country", "Australia"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "dive_sites" ("name", "water_type", "dive_type", "lat", "lng", "max_depth", "created_at", "updated_at", "country") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Scapa Flow"], ["water_type", "salt"], ["dive_type", "boat, night dive"], ["lat", 58.903015], ["lng", -3.051202], ["max_depth", 30], ["created_at", "2017-07-24 16:23:05.194371"], ["updated_at", "2017-07-24 16:23:05.194371"], ["country", "Scotland"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (31.0ms)[0m  [1m[35mTRUNCATE users RESTART IDENTITY CASCADE[0m
+  [1m[35m (6.8ms)[0m  [1m[35mTRUNCATE logs RESTART IDENTITY CASCADE[0m
+  [1m[35m (9.9ms)[0m  [1m[35mTRUNCATE dive_sites RESTART IDENTITY CASCADE[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "olly@olly.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "first_name", "last_name", "email", "password_digest", "diving_level", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "ollymid"], ["first_name", "olly"], ["last_name", "middleton"], ["email", "olly@olly.com"], ["password_digest", "$2a$10$.EeEdlXYyzUI6x.QbXGdJeY6EJkP6/l47SEPZdtmbkzoyoSI1MyRi"], ["diving_level", "PADI OW Instructor"], ["created_at", "2017-07-24 16:23:58.243500"], ["updated_at", "2017-07-24 16:23:58.243500"]]
+  [1m[35m (6.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "lucy@lucy.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "first_name", "last_name", "email", "password_digest", "diving_level", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "lucymid"], ["first_name", "lucy"], ["last_name", "middleton"], ["email", "lucy@lucy.com"], ["password_digest", "$2a$10$INaklzLyYpwGN.bcaMwyMu52fC0x1k9KU84ELytj0KECQNlitS9EG"], ["diving_level", "PADI Open Water Diver"], ["created_at", "2017-07-24 16:23:58.319291"], ["updated_at", "2017-07-24 16:23:58.319291"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "dive_sites" ("name", "water_type", "dive_type", "lat", "lng", "max_depth", "created_at", "updated_at", "country") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Coral Gardens"], ["water_type", "salt"], ["dive_type", "boat, night dive"], ["lat", -16.725453], ["lng", 146.276663], ["max_depth", 20], ["created_at", "2017-07-24 16:23:58.335702"], ["updated_at", "2017-07-24 16:23:58.335702"], ["country", "Australia"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "dive_sites" ("name", "water_type", "dive_type", "lat", "lng", "max_depth", "created_at", "updated_at", "country") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Scapa Flow"], ["water_type", "salt"], ["dive_type", "boat, night dive"], ["lat", 58.903015], ["lng", -3.051202], ["max_depth", 30], ["created_at", "2017-07-24 16:23:58.338767"], ["updated_at", "2017-07-24 16:23:58.338767"], ["country", "Scotland"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "logs" ("date", "user_id", "dive_site_id", "dive_time", "gear", "comments", "visibility", "temperature", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["date", "2017-04-28"], ["user_id", 1], ["dive_site_id", 1], ["dive_time", 45], ["gear", "mask, snorkel, 6kg weights"], ["comments", "Saw a big fish - Nitrox dive"], ["visibility", "20"], ["temperature", 27.0], ["created_at", "2017-07-24 16:23:58.361568"], ["updated_at", "2017-07-24 16:23:58.361568"]]
+  [1m[35m (6.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "logs" ("date", "user_id", "dive_site_id", "dive_time", "gear", "comments", "visibility", "temperature", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["date", "2017-04-28"], ["user_id", 2], ["dive_site_id", 2], ["dive_time", 45], ["gear", "mask, snorkel, 6kg weights"], ["comments", "Saw a big fish - Nitrox dive"], ["visibility", "20"], ["temperature", 27.0], ["created_at", "2017-07-24 16:23:58.371711"], ["updated_at", "2017-07-24 16:23:58.371711"]]
+  [1m[35m (8.8ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/api/logs/1" for 127.0.0.1 at 2017-07-24 17:24:20 +0100
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LogsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Completed 404 Not Found in 21ms (ActiveRecord: 6.8ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=3):
+  
+app/controllers/application_controller.rb:13:in `current_user'
+app/controllers/application_controller.rb:9:in `user_signed_in?'
+app/controllers/application_controller.rb:5:in `authenticate_user!'
+Started GET "/api/logs/2017-07-24T16:24:31.627Z" for 127.0.0.1 at 2017-07-24 17:24:31 +0100
+Processing by LogsController#show as 
+  Parameters: {"id"=>"2017-07-24T16:24:31"}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Completed 404 Not Found in 15ms (ActiveRecord: 8.1ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=3):
+  
+app/controllers/application_controller.rb:13:in `current_user'
+app/controllers/application_controller.rb:9:in `user_signed_in?'
+app/controllers/application_controller.rb:5:in `authenticate_user!'
+Started POST "/api/login" for 127.0.0.1 at 2017-07-24 17:26:32 +0100
+Processing by AuthenticationsController#login as */*
+  Parameters: {"email"=>"olly@olly.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"olly@olly.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "olly@olly.com"], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mLog Load (1.3ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (65.4ms)
+Completed 200 OK in 184ms (Views: 60.5ms | ActiveRecord: 11.0ms)
+
+
