@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170724135601) do
+ActiveRecord::Schema.define(version: 20170725235942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,13 +19,13 @@ ActiveRecord::Schema.define(version: 20170724135601) do
     t.string "name"
     t.string "image"
     t.string "water_type"
-    t.string "dive_type"
     t.float "lat"
     t.float "lng"
     t.integer "max_depth"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "country"
+    t.string "dive_type"
   end
 
   create_table "logs", force: :cascade do |t|
