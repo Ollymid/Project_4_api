@@ -1,13 +1,17 @@
 class User < ApplicationRecord
-  has_secure_password
-  has_many :logs
+  has_secure_password validations: false
+  has_many :logs, dependent: :destroy
+  has_many :dive_sites_created, class_name: "DiveSite", foreign_key: "user_id"
   has_many :dive_sites, -> { distinct }, through: :logs
 
   validates :username, uniqueness: true
-  validates :diving_level, length: { in: 8..150 }
+  validates :diving_level, length: { in: 8..150 }, unless: :oauth_login?
   validates :username, presence: true
   validates :email, format: { with: /.*@.*./, message: 'Invalid Email' }
-  validates :email, presence: true, on: :create
-  validates :email, uniqueness: true, presence: true
+  validates :email, uniqueness: true, presence: true, unless: :oauth_login?
+  validates :password, presence: true, confirmation: true, unless: :oauth_login?
 
+  def oauth_login?
+    facebook_id.present?
+  end
 end

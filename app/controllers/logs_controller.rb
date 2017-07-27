@@ -5,20 +5,21 @@ class LogsController < ApplicationController
   def index
     @logs = Log.all
 
-    render json: @logs
+    render json: @logs, include: ['user', 'dive_site']
   end
 
   # GET /logs/1
   def show
-    render json: @log
+    render json: @log, include: ['user', 'dive_site']
   end
 
   # POST /logs
   def create
-    @log = Log.new(log_params)
+    @log = Log.new(Uploader.upload(log_params))
+    @log.user = current_user
 
     if @log.save
-      render json: @log, status: :created, location: @log
+      render json: @log, status: :created, location: @log, include: ['user', 'dive_site']
     else
       render json: @log.errors, status: :unprocessable_entity
     end
@@ -26,8 +27,8 @@ class LogsController < ApplicationController
 
   # PATCH/PUT /logs/1
   def update
-    if @log.update(log_params)
-      render json: @log
+    if @log.update(Uploader.upload(log_params))
+      render json: @log, include: ['user', 'dive_site']
     else
       render json: @log.errors, status: :unprocessable_entity
     end
@@ -46,6 +47,6 @@ class LogsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def log_params
-      params.permit(:date, :user_id, :dive_site_id, :country, :dive_time, :gear, :comments, :visibility, :temperature, :water_type, :dive_type, :image)
+      params.permit(:date, :user_id, :dive_site_id, :country, :dive_time, :gear, :comments, :visibility, :temperature, :water_type, :dive_type, :base64)
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725235942) do
+ActiveRecord::Schema.define(version: 20170727130323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20170725235942) do
     t.datetime "updated_at", null: false
     t.string "country"
     t.string "dive_type"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_dive_sites_on_user_id"
   end
 
   create_table "logs", force: :cascade do |t|
@@ -56,6 +58,7 @@ ActiveRecord::Schema.define(version: 20170725235942) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "dive_sites", "users"
   add_foreign_key "logs", "dive_sites"
   add_foreign_key "logs", "users"
 end

@@ -10,12 +10,13 @@ class DiveSitesController < ApplicationController
 
   # GET /dive_sites/1
   def show
-    render json: @dive_site
+    render json: @dive_site, include: ['users', 'logs', 'creator']
   end
 
   # POST /dive_sites
   def create
-    @dive_site = DiveSite.new(dive_site_params)
+    @dive_site = DiveSite.new(Uploader.upload(dive_site_params))
+    @dive_site.creator = current_user
 
     if @dive_site.save
       render json: @dive_site, status: :created, location: @dive_site
@@ -26,7 +27,7 @@ class DiveSitesController < ApplicationController
 
   # PATCH/PUT /dive_sites/1
   def update
-    if @dive_site.update(dive_site_params)
+    if @dive_site.update(Uploader.upload(dive_site_params))
       render json: @dive_site
     else
       render json: @dive_site.errors, status: :unprocessable_entity
@@ -46,6 +47,6 @@ class DiveSitesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def dive_site_params
-      params.permit(:name, :image, :water_type, :dive_type, :lat, :lng, :max_depth, :country)
+      params.permit(:name, :base64, :water_type, :dive_type, :lat, :lng, :country, :max_depth)
     end
 end
