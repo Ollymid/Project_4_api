@@ -1,11 +1,11 @@
 class OauthController < ApplicationController
   skip_before_action :authenticate_user!
-  
+
   def facebook
     token = HTTParty.post('https://graph.facebook.com/v2.8/oauth/access_token', {
       query: {
         client_id: ENV["FACEBOOK_APP_ID"],
-        redirect_uri: 'http://localhost:7000/',
+        redirect_uri: (ENV["APP_URL"] || "http://localhost:7000") + "/",
         client_secret: ENV["FACEBOOK_APP_SECRET"],
         code: params[:code]
       },
