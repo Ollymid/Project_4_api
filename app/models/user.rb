@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   has_secure_password validations: false
   has_many :logs, dependent: :destroy
-  has_many :dive_sites_created, class_name: "DiveSite", foreign_key: "user_id"
+  has_many :dive_sites, dependent: :destroy
+  has_many :dive_sites_created, class_name: "DiveSite", foreign_key: "user_id", dependent: :destroy
   has_many :dive_sites, -> { distinct }, through: :logs
 
   validates :username, uniqueness: true

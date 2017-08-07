@@ -1,6 +1,6 @@
 class DiveSite < ApplicationRecord
-  belongs_to :creator, class_name: 'User', foreign_key: 'user_id' 
-  has_many :logs
+  belongs_to :creator, class_name: 'User', foreign_key: 'user_id'
+  has_many :logs, dependent: :destroy
   has_many :users, through: :logs
   mount_uploader :image, ImageUploader
 
