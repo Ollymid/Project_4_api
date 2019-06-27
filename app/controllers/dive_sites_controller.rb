@@ -10,7 +10,7 @@ class DiveSitesController < ApplicationController
 
   # GET /dive_sites/1
   def show
-    render json: @dive_site, include: ['users', 'logs', 'creator']
+    render json: @dive_site, include: ['users', 'logs', 'creator', 'logs.user']
   end
 
   # POST /dive_sites
